@@ -30,6 +30,7 @@ class MyViewModel: ViewModel() {
         }
         viewModelScope.launch {
             myFlow1.collect{
+                delay(
                 Log.i("MYTAG","Consumed $it")
 
             }
