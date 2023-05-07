@@ -21,7 +21,7 @@ class MyViewModel: ViewModel() {
 
     private fun backPressureDemo(){
         val myFlow1 = flow<Int> {
-            for (i in 1..100){
+            for (i in 1..10){
                 Log.i("MYTAG","Produced $i")
                 emit(i)
                 delay(1000L)
@@ -29,6 +29,9 @@ class MyViewModel: ViewModel() {
         }
         viewModelScope.launch {
             myFlow1
+                .filter {
+                    count -> count%3 == 0
+                }
                 .map {
                     it -> showMessage(it)
                 }
