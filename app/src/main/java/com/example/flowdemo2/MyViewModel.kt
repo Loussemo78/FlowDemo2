@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
@@ -29,7 +30,7 @@ class MyViewModel: ViewModel() {
             }
         }
         viewModelScope.launch {
-            myFlow1.collect{
+            myFlow1.buffer().collect{
                 delay(2000L)
                 Log.i("MYTAG","Consumed $it")
 
